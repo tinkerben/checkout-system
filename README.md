@@ -14,7 +14,7 @@ Focused more on functional programming.
 
 ## How to run
 
-If you have `docker` installed, you need to run `./docker-run.sh`
+If you have `docker` installed, you can run `./docker-run.sh`
 
 ```
 $ npm install       # install the dependencies
