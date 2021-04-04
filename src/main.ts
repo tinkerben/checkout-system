@@ -14,17 +14,17 @@ const run = async () => {
   checkout.add(Size.MEDIUM);
   checkout.add(Size.MEDIUM);
   checkout.add(Size.LARGE);
-  checkout.add(Size.LARGE);
-  checkout.add(Size.LARGE);
-  checkout.add(Size.LARGE);
-  checkout.add(Size.LARGE);
+  // checkout.add(Size.LARGE);
+  // checkout.add(Size.LARGE);
+  // checkout.add(Size.LARGE);
+  // checkout.add(Size.LARGE);
 
   // checkout.add(Size.SMALL);
   // checkout.add(Size.SMALL);
   // checkout.add(Size.SMALL);
   // checkout.add(Size.LARGE);
 
-  console.log(checkout.total());
+  console.log('Total $' + checkout.total());
 };
 
 run();
