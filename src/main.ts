@@ -1,6 +1,6 @@
 import { Checkout } from './checkout';
 import { Size} from './services/pizzaService';
-import { getAllSizes, getPricingRulesForCustomer } from './helper';
+import { getAllSizes, getPricingRulesForCustomer } from './fakeDb';
 
 const run = async () => {
 
@@ -13,6 +13,10 @@ const run = async () => {
   checkout.add(Size.MEDIUM);
   checkout.add(Size.MEDIUM);
   checkout.add(Size.MEDIUM);
+  checkout.add(Size.LARGE);
+  checkout.add(Size.LARGE);
+  checkout.add(Size.LARGE);
+  checkout.add(Size.LARGE);
   checkout.add(Size.LARGE);
 
   // checkout.add(Size.SMALL);

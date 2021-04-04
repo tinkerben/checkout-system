@@ -1,8 +1,9 @@
-import { GetXForY, isCustomerDiscount} from '../models/deal';
-import { calculateCustomerDiscountCost, calculateGetXForYCost, numberToMoney } from './dealService';
+// import { isCustomerDiscount, isGetXForY} from '../models/deal';
+import {calculateCustomerDiscountCost, calculateGetXForYCost, numberToMoney} from './dealService';
 import { PricingRule } from '../models/pricingRule';
 import {Size, Pizza, getPizzaPriceFromSource, CustomerEnum} from './pizzaService';
 import {Customer} from "../checkout";
+import {isCustomerDiscount, isGetXForY} from "..";
 
 export interface CartItem {
   size: Size;
@@ -10,32 +11,22 @@ export interface CartItem {
 };
 
 export const calculateCartItem = (customer: Customer, pricingRules: PricingRule[], item: CartItemWithPrice): number => {
-  const matchingDiscountRules = pricingRules.filter(r => {
+  const matchingRules = pricingRules.filter(r => {
     return r.id == (<any>CustomerEnum)[customer.name.toUpperCase()];
   });
-  const noOfMatchingDiscountRules = matchingDiscountRules.length;
-
-  const matchingPricingRules = pricingRules.filter(r => {
-    return r.id == (<any>CustomerEnum)[customer.name.toUpperCase()] && r.size == item.size;
-  });
-  const noOfMatchingPricingRules = matchingPricingRules.length;
 
   let cost;
   cost = item.count * item.basePrice;
-  // console.info('info: calculate with retail price');
 
-  const thePricingRule = matchingDiscountRules[noOfMatchingDiscountRules - 1];
-  if (matchingDiscountRules[noOfMatchingDiscountRules - 1] && isCustomerDiscount(thePricingRule.deal)) {
-    cost = calculateCustomerDiscountCost(thePricingRule.deal, item.count);
-    // console.info('info: calculate with CustomerDiscount');
-  }
+  matchingRules.forEach(i => {
+    if (isCustomerDiscount(i.deal) && i.size == item.size) {
+      cost = calculateCustomerDiscountCost(i.deal, item.count);
+    }
 
-  if (noOfMatchingPricingRules > 0) {
-    const thePricingRule = matchingPricingRules[noOfMatchingPricingRules - 1];
-
-    cost = calculateGetXForYCost(<GetXForY>thePricingRule.deal, item.count, item.basePrice);
-    // console.info('info: calculate with GetXForYCost' + cost);
-  }
+    if (isGetXForY(i.deal) &&  i.size == item.size) {
+      cost = calculateGetXForYCost(i.deal, item.count, item.basePrice);
+    }
+  });
 
   return cost;
 };

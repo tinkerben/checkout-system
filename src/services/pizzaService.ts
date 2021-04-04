@@ -3,7 +3,9 @@ export enum Size {
 };
 
 export enum CustomerEnum {
-  MICROSOFT, AMAZON, FACEBOOK
+  MICROSOFT,
+  AMAZON,
+  FACEBOOK,
 };
 
 export interface Pizza {

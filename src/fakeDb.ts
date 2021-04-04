@@ -33,6 +33,7 @@ export const getAllSizes = async (): Promise<Pizza[]> => {
 export const getPricingRulesForCustomer = async (): Promise<PricingRule[]> => {
   return [
     { id: 0, size: Size.SMALL, deal: { getCount: 3, forCount: 2 }},
+    // { id: 1, size: Size.LARGE, deal: { getCount: 5, forCount: 4 }},
     { id: 1, size: Size.LARGE, deal: { discountedPrice: 19.99 }},
     { id: 2, size: Size.MEDIUM, deal: { getCount: 5, forCount: 4 }},
   ];

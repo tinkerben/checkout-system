@@ -6,11 +6,12 @@
 - Should both be applied?
 - Should we want to take the best deal?
 
-Current implementation does not factor this in just yet, to enhance on refactor based on future requirements. 
+The current implementation does not factor this just yet. In a real life scenario, more questions
+would have been asked to determine the actual requirements (but sometimes to move things along a 
+decision needs to be made).
 
-# Architectural Decisions
-
-Focused more on functional programming.
+For the purpose of this test, it will take the latest (assume desc. chronological order) deal for 
+the customer.
 
 ## How to run
 
